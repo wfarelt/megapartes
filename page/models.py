@@ -37,3 +37,15 @@ class Servicio(models.Model):
 
     class Meta:
         verbose_name_plural = "Servicios"
+
+class Marca(models.Model):
+    nombre = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to='marcas/')
+    industria = models.CharField(max_length=255)
+    estado = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural = "Marcas"

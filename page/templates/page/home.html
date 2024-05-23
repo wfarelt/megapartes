@@ -65,7 +65,7 @@
         <div class="col-lg-6 text-center">
         <h2 data-aos="fade-down"><span>MEGAPARTES SRL</span></h2>
         <p data-aos="fade-up">Repuestos alternativos para equipos pesados.</p>
-        <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
+        <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">REGISTARSE</a>
         </div>
     </div>
     </div>
@@ -105,19 +105,25 @@
             </div>
             
             <div class="row gy-4">
-                {% for categoria in categories %}
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-item position-relative">
-                        <div class="card-img-top custom-img">
-                            <img src="{{ categoria.imagen.url }}" class="card-img-top" alt="Imagen de {{ categoria.nombre }}">
-                        </div>
-                        <h3>{{ categoria.nombre }}</h3>
-                        <p>{{ categoria.descripcion }}</p>
-                        <a href="#" class="readmore stretched-link">Learn more <i
-                            class="bi bi-arrow-right"></i></a>
+                {% if not categories %}
+                    <div class="alert alert-info">
+                        <strong>Info!</strong> No existen categorias de productos.
                     </div>
-                </div><!-- End Service Item -->
-                {% endfor %}
+                {% else %}
+                    {% for categoria in categories %}
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item position-relative">
+                            <div class="card-img-top custom-img">
+                                <img src="{{ categoria.imagen.url }}" class="card-img-top" alt="Imagen de {{ categoria.nombre }}">
+                            </div>
+                            <h3>{{ categoria.nombre }}</h3>
+                            <p>{{ categoria.descripcion }}</p>
+                            <a href="#" class="readmore stretched-link">Learn more <i
+                                class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div><!-- End Service Item -->
+                    {% endfor %}
+                {%endif%}
             </div>
             
         </div>
@@ -138,7 +144,9 @@
                     </p>
 
                     {% if not services %}
-                        <p style="color: red;">No existen servicios...</p>
+                        <div class="alert alert-info">
+                            <strong>Info!</strong> No existen servicios para mostrar.
+                        </div>
                     {% else %}
                         {% for service in services %}
 
@@ -195,19 +203,26 @@
             <div class="row">
                 <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
                 data-aos="fade-up" data-aos-delay="100">
-                <h3>Voluptatem dignissimos provident</h3>
-                <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore
-                    magna aliqua.
-                </p>
-                <ul>
-                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
-                    pariatur.</li>
-                </ul>
+                    <h3>Neque exercitationem debitis</h3>
+                    <p class="fst-italic">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore
+                        magna aliqua.
+                    </p>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal #123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> Teléfono: +123456789</li>
+                        <li><i class="far fa-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</li>
+                    </ul>
+                    <p class="fst-italic">
+                        Ejecutivos de venta:
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-whatsapp"></i> ventas1 <a href="">+123456789</a></li>
+                        <li><i class="bi bi-whatsapp"></i> ventas2 <a href="">+123456789</a></li>
+                        <li><i class="bi bi-whatsapp"></i> ventas3 <a href="">+123456789</a></li>
+                    </ul>
+                
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
                 <img src="{% static 'img/features-1.jpg' %}" alt="" class="img-fluid">
@@ -225,13 +240,9 @@
                     magna aliqua.
                 </p>
                 <ul>
-                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    <li><i class="bi bi-check2-all"></i> Provident mollitia neque rerum asperiores dolores quos qui a.
-                    Ipsum neque dolor voluptate nisi sed.</li>
-                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
-                    pariatur.</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal #123, Ciudad</li>
+                    <li><i class="fas fa-phone"></i> Teléfono: +123456789</li>
+                    <li><i class="far fa-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</li>
                 </ul>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center">
@@ -244,17 +255,16 @@
             <div class="row">
                 <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
                 <h3>Voluptatibus commodi accusamu</h3>
-                <ul>
-                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    <li><i class="bi bi-check2-all"></i> Provident mollitia neque rerum asperiores dolores quos qui a.
-                    Ipsum neque dolor voluptate nisi sed.</li>
-                </ul>
                 <p class="fst-italic">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore
                     magna aliqua.
                 </p>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal #123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> Teléfono: +123456789</li>
+                        <li><i class="far fa-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</li>
+                </ul>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center">
                 <img src="{% static 'img/features-3.jpg' %}" alt="" class="img-fluid">
@@ -272,11 +282,9 @@
                     magna aliqua.
                 </p>
                 <ul>
-                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
-                    pariatur.</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal #123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> Teléfono: +123456789</li>
+                        <li><i class="far fa-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</li>
                 </ul>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center">
@@ -295,7 +303,7 @@
         <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-            <h2>Our Projects</h2>
+            <h2>Galeria de Imagenes</h2>
             <p>Consequatur libero assumenda est voluptatem est quidem illum et officia imilique qui vel architecto
             accusamus fugit aut qui distinctio</p>
         </div>
@@ -304,11 +312,11 @@
             data-portfolio-sort="original-order">
 
             <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-remodeling">Remodeling</li>
-            <li data-filter=".filter-construction">Construction</li>
-            <li data-filter=".filter-repairs">Repairs</li>
-            <li data-filter=".filter-design">Design</li>
+            <li data-filter="*" class="filter-active">Todas</li>
+            <li data-filter=".filter-remodeling">Motor</li>
+            <li data-filter=".filter-construction">Filtros</li>
+            <li data-filter=".filter-repairs">Mando Final</li>
+            <li data-filter=".filter-design">Uñas</li>
             </ul><!-- End Projects Filters -->
 
             <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
@@ -505,110 +513,29 @@
         </div>
 
         <div class="slides-2 swiper">
-            <div class="swiper-wrapper">
+            {% if not marcas %}
+                <div class="alert alert-info">
+                    <strong>Info!</strong> No existen imagenes para la galeria.
+                </div>
+            {% else %}
 
-            <div class="swiper-slide">
-                <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                    <img src="{% static 'img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="">
-                    <h3>Saul Goodman</h3>
-                    <h4>Ceo &amp; Founder</h4>
-                    <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                    <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus.
-                    Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
-                </div>
-                </div>
-            </div><!-- End testimonial item -->
+                {% for marca in marcas %}
+                <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
-                <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                    <img src="{% static 'img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt="">
-                    <h3>Sara Wilsson</h3>
-                    <h4>Designer</h4>
-                    <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                    <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis
-                    quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
+                    <div class="swiper-slide">
+                        <div class="testimonial-wrap">
+                            <div class="testimonial-item">
+                                <img src="{% static 'img/testimonials/testimonials-1.jpg' %}" class="" alt="">
+                                <h3>Sara Wilsson</h3>
+                                <h4>Designer</h4>
+                            </div>
+                            
+                        </div>               
+                    </div><!-- End testimonial item -->
                 </div>
-                </div>
-            </div><!-- End testimonial item -->
+                {% endfor %}
+            {% endif %}
 
-            <div class="swiper-slide">
-                <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                    <img src="{% static 'img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="">
-                    <h3>Jena Karlis</h3>
-                    <h4>Store Owner</h4>
-                    <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                    <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim
-                    tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
-                </div>
-                </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-                <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                    <img src="{% static 'img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
-                    <h3>Matt Brandon</h3>
-                    <h4>Freelancer</h4>
-                    <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                    <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit
-                    minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
-                </div>
-                </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-                <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                    <img src="{% static 'img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="">
-                    <h3>John Larson</h3>
-                    <h4>Entrepreneur</h4>
-                    <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                    <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim
-                    culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum
-                    quid.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
-                </div>
-                </div>
-            </div><!-- End testimonial item -->
-
-            </div>
             <div class="swiper-pagination"></div>
         </div>
 
