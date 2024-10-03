@@ -9,3 +9,6 @@ def home(request):
     services = Servicio.objects.all()
     marcas = Marca.objects.all()
     return render(request, 'page/home.html', {'sliders': sliders, 'categories': categories, 'services':services, 'marcas':marcas})
+
+def home2(request):
+    return render(request, 'page/base2.html')

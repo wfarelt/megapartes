@@ -1,0 +1,107 @@
+/* Estilo general */
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor para evitar que el pseudo-elemento se desborde */
+.navbar-container {
+    position: relative;
+    margin: 20px;
+}
+
+/* Navbar */
+.navbar {
+    position: relative;
+    background-color: #FFD700; /* Color amarillo */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden; /* Para asegurarnos de que el pseudo-elemento no se desborde */
+}
+
+/* Título */
+.navbar .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white; /* Ajustar según el contraste deseado */
+}
+
+/* Estilo del desvanecido */
+.navbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, #FFD700, #FFFACD); /* Desvanecido de amarillo a un tono más claro */
+    border-radius: 15px;
+    z-index: -1;
+}
+
+/* Ajuste de elementos dentro de la navbar */
+.navbar .menu {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar .menu a {
+    color: white; /* Ajustar según el contraste deseado */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar .menu a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo del slider */
+.slider-container {
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+}
+
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.left-button {
+    left: 10px;
+}
+
+.right-button {
+    right: 10px;
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
