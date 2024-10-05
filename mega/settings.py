@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+# Importar decouple
+from decouple import config, Csv
+import os
 
 from pathlib import Path
 
@@ -22,11 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-eo=6*6!%r+9$!$bmbgpie_azp8tq2p16b0h1-n3chg-83f43c_'
 
+# Configuración de DEBUG y SECRET_KEY usando el archivo .env
+
+DEBUG = config('DEBUG', default=True, cast=bool)
+#SECRET_KEY = config('SECRET_KEY', default='clave_por_defecto_insegura')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
-
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
 
 # Application definition
 
@@ -74,12 +82,35 @@ WSGI_APPLICATION = 'mega.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+#DATABASES = {
+   # 'default': {
+   #     'ENGINE': 'django.db.backends.sqlite3',
+  #      'NAME': BASE_DIR / 'db.sqlite3',
+ #   }
+#}
+
+
+# Definir la base de datos en función del entorno
+if DEBUG:
+    # Base de datos local (SQLite)
+    DATABASES = {
+        'default': {
+            'ENGINE': config('DB_ENGINE_LOCAL', default='django.db.backends.sqlite3'),
+            'NAME': os.path.join(BASE_DIR, config('DB_NAME_LOCAL', default='db.sqlite3')),
+        }
     }
-}
+else:
+    # Base de datos de producción (PostgreSQL)
+    DATABASES = {
+        'default': {
+            'ENGINE': config('DB_ENGINE_PROD', default='django.db.backends.postgresql'),
+            'NAME': config('DB_NAME_PROD'),
+            'USER': config('DB_USER_PROD'),
+            'PASSWORD': config('DB_PASSWORD_PROD'),
+            'HOST': config('DB_HOST_PROD', default='localhost'),
+            'PORT': config('DB_PORT_PROD', default='5432'),
+        }
+    }
 
 
 # Password validation
