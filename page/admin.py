@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Sliders, Categoria, Servicio, Marca
+from .models import Sliders, Categoria, Servicio, Marca, Sucursal
 # Register your models here.
 
 @admin.register(Sliders)
@@ -16,4 +16,8 @@ class ServicioAdmin(admin.ModelAdmin):
 
 @admin.register(Marca)
 class MarcaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'estado')
+
+@admin.register(Sucursal)
+class SucursalAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'estado')

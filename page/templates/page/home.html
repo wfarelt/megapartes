@@ -203,102 +203,45 @@
             </li><!-- End tab nav item -->
 
         </ul>
-
+        {{context}}
         <div class="tab-content">
 
-            <div class="tab-pane active show" id="tab-1">
-            <div class="row">
-                <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
-                data-aos="fade-up" data-aos-delay="100">
-                    <h3>Neque exercitationem debitis</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore
-                        magna aliqua.
-                    </p>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal #123, Ciudad</li>
-                        <li><i class="fas fa-phone"></i> Teléfono: +123456789</li>
-                        <li><i class="far fa-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</li>
-                    </ul>
-                    <p class="fst-italic">
-                        Ejecutivos de venta:
-                    </p>
-                    <ul>
-                        <li><i class="bi bi-whatsapp"></i> ventas1 <a href="">+123456789</a></li>
-                        <li><i class="bi bi-whatsapp"></i> ventas2 <a href="">+123456789</a></li>
-                        <li><i class="bi bi-whatsapp"></i> ventas3 <a href="">+123456789</a></li>
-                    </ul>
-                
+            {% if sucursales %}
+                {% for sucursal in sucursales %}
+                    <div class="tab-pane active show" id="tab-{{sucursal.id}}">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
+                            data-aos="fade-up" data-aos-delay="100">
+                                <h3>{{sucursal.nombre}}</h3>
+                                <p class="fst-italic">
+                                    {{sucursal.descripcion}}
+                                </p>
+                                <ul>
+                                    <li><i class="fas fa-map-marker-alt"></i> Dirección: {{sucursal.direccion}}</li>
+                                    <li><i class="fas fa-phone"></i> Teléfono: {{sucursal.telefono}}</li>
+                                    <li><i class="far fa-clock"></i> Horario de Atención: {{sucursal.horario}}</li>
+                                </ul> 
+                                <p class="fst-italic">
+                                    Ejecutivos de venta:
+                                </p>
+                                <ul>
+                                    <li><i class="bi bi-whatsapp"></i> ventas1 <a href="">+123456789</a></li>
+                                    <li><i class="bi bi-whatsapp"></i> ventas2 <a href="">+123456789</a></li>
+                                    <li><i class="bi bi-whatsapp"></i> ventas3 <a href="">+123456789</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+                                <img src="{{sucursal.imagen.url}}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End tab content item -->
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-info">
+                    <strong>Info!</strong> No existen sucursales para mostrar.
                 </div>
-                <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
-                <img src="{% static 'img/features-1.jpg' %}" alt="" class="img-fluid">
-                </div>
-            </div>
-            </div><!-- End tab content item -->
+            {% endif %}
 
-            <div class="tab-pane" id="tab-2">
-            <div class="row">
-                <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Neque exercitationem debitis</h3>
-                <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore
-                    magna aliqua.
-                </p>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal #123, Ciudad</li>
-                    <li><i class="fas fa-phone"></i> Teléfono: +123456789</li>
-                    <li><i class="far fa-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</li>
-                </ul>
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="{% static 'img/features-2.jpg' %}" alt="" class="img-fluid">
-                </div>
-            </div>
-            </div><!-- End tab content item -->
-
-            <div class="tab-pane" id="tab-3">
-            <div class="row">
-                <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Voluptatibus commodi accusamu</h3>
-                <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore
-                    magna aliqua.
-                </p>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal #123, Ciudad</li>
-                        <li><i class="fas fa-phone"></i> Teléfono: +123456789</li>
-                        <li><i class="far fa-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</li>
-                </ul>
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="{% static 'img/features-3.jpg' %}" alt="" class="img-fluid">
-                </div>
-            </div>
-            </div><!-- End tab content item -->
-
-            <div class="tab-pane" id="tab-4">
-            <div class="row">
-                <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Omnis fugiat ea explicabo sunt</h3>
-                <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore
-                    magna aliqua.
-                </p>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> Dirección: Calle Principal #123, Ciudad</li>
-                        <li><i class="fas fa-phone"></i> Teléfono: +123456789</li>
-                        <li><i class="far fa-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</li>
-                </ul>
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="{% static 'img/features-4.jpg' %}" alt="" class="img-fluid">
-                </div>
-            </div>
-            </div><!-- End tab content item -->
 
         </div>
 

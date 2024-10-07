@@ -49,3 +49,17 @@ class Marca(models.Model):
 
     class Meta:
         verbose_name_plural = "Marcas"
+
+#Sucursal
+class Sucursal(models.Model):
+    nombre = models.CharField(max_length=50)
+    direccion = models.TextField()
+    telefono = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to='sucursales/')
+    estado = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural = "Sucursales"
