@@ -25,16 +25,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-eo=6*6!%r+9$!$bmbgpie_azp8tq2p16b0h1-n3chg-83f43c_'
 
-# Configuración de DEBUG y SECRET_KEY usando el archivo .env
+# Detectar el entorno actual
+DJANGO_ENV = config('DJANGO_ENV', default='local')
+if DJANGO_ENV == 'local':
+    DEBUG = True
+else:
+    DEBUG = False
 
-DEBUG = config('DEBUG', default=True, cast=bool)
-#SECRET_KEY = config('SECRET_KEY', default='clave_por_defecto_insegura')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
+
 
 # Application definition
 
@@ -63,7 +66,7 @@ ROOT_URLCONF = 'mega.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,35 +85,28 @@ WSGI_APPLICATION = 'mega.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
-   # 'default': {
-   #     'ENGINE': 'django.db.backends.sqlite3',
-  #      'NAME': BASE_DIR / 'db.sqlite3',
- #   }
-#}
-
-
-# Definir la base de datos en función del entorno
-if DEBUG:
-    # Base de datos local (SQLite)
+if DJANGO_ENV == 'local':
+    # Configuración de la base de datos para el entorno local
     DATABASES = {
         'default': {
-            'ENGINE': config('DB_ENGINE_LOCAL', default='django.db.backends.sqlite3'),
-            'NAME': os.path.join(BASE_DIR, config('DB_NAME_LOCAL', default='db.sqlite3')),
+            'ENGINE': config('LOCAL_DATABASE_ENGINE'),
+            'NAME': BASE_DIR / config('LOCAL_DATABASE_NAME'),
         }
     }
+    ALLOWED_HOSTS = ['*']
 else:
-    # Base de datos de producción (PostgreSQL)
+    # Configuración de la base de datos para el entorno de producción
     DATABASES = {
         'default': {
-            'ENGINE': config('DB_ENGINE_PROD', default='django.db.backends.postgresql'),
-            'NAME': config('DB_NAME_PROD'),
-            'USER': config('DB_USER_PROD'),
-            'PASSWORD': config('DB_PASSWORD_PROD'),
-            'HOST': config('DB_HOST_PROD', default='localhost'),
-            'PORT': config('DB_PORT_PROD', default='5432'),
+            'ENGINE': config('PROD_DATABASE_ENGINE'),
+            'NAME': config('PROD_DATABASE_NAME'),
+            'USER': config('PROD_DATABASE_USER'),
+            'PASSWORD': config('PROD_DATABASE_PASSWORD'),
+            'HOST': config('PROD_DATABASE_HOST'),
+            'PORT': config('PROD_DATABASE_PORT'),
         }
     }
+    ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Password validation
