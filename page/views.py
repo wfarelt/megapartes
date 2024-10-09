@@ -19,3 +19,6 @@ def home(request):
 
 def home2(request):
     return render(request, 'page/base2.html')
+
+def about(request):
+    return render(request, 'page/about.html')

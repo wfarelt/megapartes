@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block css %}
+<style>
+    /* Personalización de las secciones */
+    .section-black {
+        background-color: #000;
+        color: #fff;
+    }
+    .section-white {
+        background-color: #fff;
+        color: #000;
+    }
+    .section {
+        padding: 60px 0;
+    }
+    .team-member img {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .team-member img:hover {
+        transform: scale(1.05); /* Aumenta ligeramente la imagen */
+        box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.7); /* Sombra amarilla */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Sección Navbar - Fondo Blanco -->
+<section class="section section-black">
+    <div class="container">
+    </div>
+</section>
+
+<!-- Sección 1 - Fondo Blanco -->
+<section class="section section-white">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="text-center">Nuestra Historia</h2>
+        </div>
+        <p class="text-center">Con más de 10 años en el mercado, hemos trabajado arduamente para ofrecer soluciones innovadoras a nuestros clientes en el sector de maquinaria pesada.</p>
+    </div>
+</section>
+
+<!-- Sección 2 - Fondo Negro -->
+<section class="section section-black">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="text-center text-white">Nuestros Valores</h2>
+        </div>
+        <p class="text-center">Nos guiamos por la honestidad, el compromiso y la excelencia en cada uno de nuestros proyectos, asegurando la satisfacción total de nuestros clientes.</p>
+    </div>
+</section>
+
+<!-- Sección 3 - Fondo Blanco -->
+<section class="section section-white">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="text-center">Nuestro Equipo</h2>
+        </div>
+        <p class="text-center">Un equipo altamente capacitado y apasionado por la tecnología, comprometido a brindar siempre las mejores soluciones a nuestros clientes.</p>
+        <div class="row text-center mt-4">
+            <!-- Vendedor 1 -->
+            <div class="col-lg-4 col-md-6 mb-4 team-member">
+                <img src="{% static 'img/team/team-1.jpg' %}" alt="Vendedor 1" class="rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
+                <h4 class="mt-3" style="color: #ffc107;">Carlos Pérez</h4>
+                <a href="https://wa.me/1234567890" target="_blank" class="btn btn-success btn-sm mt-2" style="display: inline-flex; align-items: center;">
+                    <i class="bi bi-whatsapp" style="font-size: 1.2rem; margin-right: 8px;"></i> Contactar
+                </a>
+            </div>
+            <!-- Vendedor 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="{% static 'img/team/team-2.jpg' %}" alt="Vendedor 2" class="rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
+                <h4 class="mt-3" style="color: #ffc107;">María Garcia</h4>
+                <a href="https://wa.me/1234567890" target="_blank" class="btn btn-success btn-sm mt-2" style="display: inline-flex; align-items: center;">
+                    <i class="bi bi-whatsapp" style="font-size: 1.2rem; margin-right: 8px;"></i> Contactar
+                </a>
+            </div>
+            <!-- Vendedor 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="{% static 'img/team/team-3.jpg' %}" alt="Vendedor 3" class="rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
+                <h4 class="mt-3" style="color: #ffc107;">Juan Rodriguez</h4>
+                <a href="https://wa.me/1234567890" target="_blank" class="btn btn-success btn-sm mt-2" style="display: inline-flex; align-items: center;">
+                    <i class="bi bi-whatsapp" style="font-size: 1.2rem; margin-right: 8px;"></i> Contactar
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 4 - Fondo Negro -->
+<section class="section section-black">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="text-center text-white">Visión de Futuro</h2>
+        </div>
+        <p class="text-center">Estamos enfocados en crecer y expandir nuestras operaciones globalmente, adoptando tecnologías de vanguardia para seguir siendo líderes en el mercado.</p>
+    </div>
+</section>
+{% endblock %}
+
+    
+
+    
