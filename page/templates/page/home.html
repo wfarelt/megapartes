@@ -25,7 +25,7 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#" class="active">Inicio</a></li>
           {%if not user.is_authenticated %}
             <li><a href="#">Ingresar</a></li>
           {% else %}
@@ -71,7 +71,6 @@
         <div class="col-lg-6 text-center">
         <h2 data-aos="fade-down"><span>MEGAPARTES SRL</span></h2>
         <p data-aos="fade-up">Repuestos alternativos para equipos pesados.</p>
-        <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">REGISTARSE</a>
         </div>
     </div>
     </div>
@@ -118,58 +117,71 @@
                     {% for categoria in categories %}
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-item position-relative">
-                            <div class="card-img-top custom-img">
+                            <div class="card-img-top">
                                 <img src="{{ categoria.imagen.url }}" class="card-img-top" alt="Imagen de {{ categoria.nombre }}">
                             </div>
-                            <h3>{{ categoria.nombre }}</h3>
-                            <p>{{ categoria.descripcion }}</p>
+                            <div class="text-center mt-4">
+                                <h3>{{ categoria.nombre }}</h3>
+                                <p>{{ categoria.descripcion }}</p>
+                            </div>
+                            <!--
                             <a href="#" class="readmore stretched-link">Learn more <i
-                                class="bi bi-arrow-right"></i></a>
+                                class="bi bi-arrow-right"></i></a> -->
                         </div>
                     </div><!-- End Service Item -->
                     {% endfor %}
                 {%endif%}
             </div>
-            
+
         </div>
     </section><!-- End Services Section -->
 
     <!-- ======= Alt Services Section ======= -->
     <section id="alt-services" class="alt-services">
         <div class="container" data-aos="fade-up">
-            <div class="row justify-content-around gy-4">
-                <div class="col-lg-6 img-bg" style="background-image: url('{% static 'img/alt-services.jpg' %}')" data-aos="zoom-in"
-                data-aos-delay="100"></div>
-
-                <div class="col-lg-5 d-flex flex-column justify-content-center">
-                    <h3>Servicios Adicionales</h3>
-                    <p>En Megapartes, nos esforzamos por ofrecer mucho más que solo productos de alta calidad. Nuestros servicios
-                        adicionales están diseñados para brindar una experiencia de compra excepcional y garantizar que cada cliente
-                        reciba la atención que merece. Conoce más sobre nuestros servicios:
-                    </p>
-
-                    {% if not services %}
-                        <div class="alert alert-info">
-                            <strong>Info!</strong> No existen servicios para mostrar.
+            <div class="section-header text-center">
+                <h2>Marcas</h2>
+                <p>Representantes de marcas reconocidas.</p>
+            </div>
+            <div class="row justify-content-center"> <!-- Centrar el carrusel -->
+                <div id="brandsCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Marca 1 -->
+                        <div class="carousel-item active">
+                            <div class="d-flex justify-content-center">
+                                <img src="{% static 'img/160x120.png' %}" class="d-block w-auto" alt="Marca 1">
+                            </div>
                         </div>
-                    {% else %}
-                        {% for service in services %}
-
-                            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
-                                <i class="bi {{service.icono}} flex-shrink-0"></i>
-                                <div>
-                                <h4><a href="" class="stretched-link">{{service.nombre}}</a></h4>
-                                <p>{{service.descripcion}}</p>
-                                </div>
-                            </div><!-- End Icon Box -->
-
-                        {% endfor %}
-                    {% endif %}
-
+                        <!-- Marca 2 -->
+                        <div class="carousel-item">
+                            <div class="d-flex justify-content-center">
+                                <img src="{% static 'img/160x120.png' %}" class="d-block w-auto" alt="Marca 2">
+                            </div>
+                        </div>
+                        <!-- Marca 3 -->
+                        <div class="carousel-item">
+                            <div class="d-flex justify-content-center">
+                                <img src="{% static 'img/160x120.png' %}" class="d-block w-auto" alt="Marca 3">
+                            </div>
+                        </div>
+                        <!-- Agrega más marcas según necesites -->
+                    </div>
+                  
+                    <!-- Controles del carrusel -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#brandsCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#brandsCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
-    </section><!-- End Alt Services Section -->
+    </section>
+    
+    <!-- End Alt Services Section -->
 
     <!-- ======= Features Section ======= -->
     <section id="features" class="features section-bg">
@@ -251,9 +263,9 @@
         <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-            <h2>Galeria de Imagenes</h2>
-            <p>Consequatur libero assumenda est voluptatem est quidem illum et officia imilique qui vel architecto
-            accusamus fugit aut qui distinctio</p>
+            <h2>Galería de Imágenes</h2>
+            <p>Descubre la calidad y variedad de nuestros productos a través de esta selección de imágenes, 
+                que representan nuestro compromiso con la excelencia.</p>
         </div>
 
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
@@ -271,11 +283,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/remodeling-1.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Remodeling 1</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/remodeling-1.jpg' %}" title="Remodeling 1"
+                    <a href="{% static 'img/1024x768.png' %}" title="Remodeling 1"
                     data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
                         class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
@@ -286,11 +298,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-construction">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/construction-1.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Construction 1</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/construction-1.jpg' %}" title="Construction 1"
+                    <a href="{% static 'img/1024x768.png' %}" title="Construction 1"
                     data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i
                         class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
@@ -301,11 +313,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/repairs-1.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Repairs 1</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/repairs-1.jpg' %}" title="Repairs 1" data-gallery="portfolio-gallery-repairs"
+                    <a href="{% static 'img/1024x768.png' %}" title="Repairs 1" data-gallery="portfolio-gallery-repairs"
                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
                         class="bi bi-link-45deg"></i></a>
@@ -315,11 +327,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-design">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/design-1.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Design 1</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/design-1.jpg' %}" title="Repairs 1" data-gallery="portfolio-gallery-book"
+                    <a href="{% static 'img/1024x768.png' %}" title="Repairs 1" data-gallery="portfolio-gallery-book"
                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
                         class="bi bi-link-45deg"></i></a>
@@ -329,11 +341,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/remodeling-2.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Remodeling 2</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/remodeling-2.jpg' %}" title="Remodeling 2"
+                    <a href="{% static 'img/1024x768.png' %}" title="Remodeling 2"
                     data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
                         class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
@@ -344,11 +356,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-construction">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/construction-2.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Construction 2</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/construction-2.jpg' %}" title="Construction 2"
+                    <a href="{% static 'img/1024x768.png' %}" title="Construction 2"
                     data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i
                         class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
@@ -359,11 +371,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/repairs-2.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Repairs 2</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/repairs-2.jpg' %}" title="Repairs 2" data-gallery="portfolio-gallery-repairs"
+                    <a href="{% static 'img/1024x768.png' %}" title="Repairs 2" data-gallery="portfolio-gallery-repairs"
                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
                         class="bi bi-link-45deg"></i></a>
@@ -373,11 +385,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-design">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/design-2.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Design 2</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/design-2.jpg' %}" title="Repairs 2" data-gallery="portfolio-gallery-book"
+                    <a href="{% static 'img/1024x768.png' %}" title="Repairs 2" data-gallery="portfolio-gallery-book"
                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
                         class="bi bi-link-45deg"></i></a>
@@ -387,11 +399,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/remodeling-3.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Remodeling 3</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/remodeling-3.jpg' %}" title="Remodeling 3"
+                    <a href="{% static 'img/1024x768.png' %}" title="Remodeling 3"
                     data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
                         class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
@@ -402,11 +414,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-construction">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/construction-3.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Construction 3</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/construction-3.jpg' %}" title="Construction 3"
+                    <a href="{% static 'img/1024x768.png' %}" title="Construction 3"
                     data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i
                         class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
@@ -417,11 +429,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/repairs-3.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Repairs 3</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/repairs-3.jpg' %}" title="Repairs 2" data-gallery="portfolio-gallery-repairs"
+                    <a href="{% static 'img/1024x768.png' %}" title="Repairs 2" data-gallery="portfolio-gallery-repairs"
                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
                         class="bi bi-link-45deg"></i></a>
@@ -431,11 +443,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-design">
                 <div class="portfolio-content h-100">
-                <img src="{% static 'img/projects/design-3.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'img/1024x768.png' %}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                     <h4>Design 3</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur</p>
-                    <a href="{% static 'img/projects/design-3.jpg' %}" title="Repairs 3" data-gallery="portfolio-gallery-book"
+                    <a href="{% static 'img/1024x768.png' %}" title="Repairs 3" data-gallery="portfolio-gallery-book"
                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                     <a href="project-details.html" title="More Details" class="details-link"><i
                         class="bi bi-link-45deg"></i></a>
@@ -450,163 +462,18 @@
         </div>
     </section><!-- End Our Projects Section -->
 
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials section-bg">
-        <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-            <h2>Marcas</h2>
-            <p>Quam sed id excepturi ccusantium dolorem ut quis dolores nisi llum nostrum enim velit qui ut et autem uia
-            reprehenderit sunt deleniti</p>
-        </div>
-
-        <div class="slides-2 swiper">
-            {% if not marcas %}
-                <div class="alert alert-info">
-                    <strong>Info!</strong> No existen imagenes para la galeria.
-                </div>
-            {% else %}
-
-                {% for marca in marcas %}
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <img src="{% static 'img/testimonials/testimonials-1.jpg' %}" class="" alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                            </div>
-                            
-                        </div>               
-                    </div><!-- End testimonial item -->
-                </div>
-                {% endfor %}
-            {% endif %}
-
-            <div class="swiper-pagination"></div>
-        </div>
-
-        </div>
-    </section><!-- End Testimonials Section -->
-
-    <!-- ======= Recent Blog Posts Section ======= -->
-    <section id="recent-blog-posts" class="recent-blog-posts">
-        <div class="container" data-aos="fade-up"">
-
-
-
-    <div class=" section-header">
-        <h2>Recent Blog Posts</h2>
-        <p>In commodi voluptatem excepturi quaerat nihil error autem voluptate ut et officia consequuntu</p>
-        </div>
-
-        <div class="row gy-5">
-
-        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="post-item position-relative h-100">
-
-            <div class="post-img position-relative overflow-hidden">
-                <img src="{% static 'img/blog/blog-1.jpg' %}" class="img-fluid" alt="">
-                <span class="post-date">December 12</span>
-            </div>
-
-            <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis</h3>
-
-                <div class="meta d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">Julia Parker</span>
-                </div>
-                <span class="px-3 text-black-50">/</span>
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                </div>
-                </div>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
-
-            </div>
-
-            </div>
-        </div><!-- End post item -->
-
-        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="post-item position-relative h-100">
-
-            <div class="post-img position-relative overflow-hidden">
-                <img src="{% static 'img/blog/blog-2.jpg' %}" class="img-fluid" alt="">
-                <span class="post-date">July 17</span>
-            </div>
-
-            <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Et repellendus molestiae qui est sed omnis</h3>
-
-                <div class="meta d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">Mario Douglas</span>
-                </div>
-                <span class="px-3 text-black-50">/</span>
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-folder2"></i> <span class="ps-2">Sports</span>
-                </div>
-                </div>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
-
-            </div>
-
-            </div>
-        </div><!-- End post item -->
-
-        <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="300">
-
-            <div class="post-img position-relative overflow-hidden">
-                <img src="{% static 'img/blog/blog-3.jpg' %}" class="img-fluid" alt="">
-                <span class="post-date">September 05</span>
-            </div>
-
-            <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Quia assumenda est et veritati tirana ploder</h3>
-
-                <div class="meta d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">Lisa Hunter</span>
-                </div>
-                <span class="px-3 text-black-50">/</span>
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span>
-                </div>
-                </div>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
-
-            </div>
-
-            </div>
-        </div><!-- End post item -->
-
-        </div>
-
-        </div>
-    </section>
-    <!-- End Recent Blog Posts Section -->
-
 </main><!-- End #main -->
 
+{% endblock %}
+
+{% block js %}
+<script>
+    var myCarousel = document.querySelector('#brandsCarousel');
+    var carousel = new bootstrap.Carousel(myCarousel, {
+      interval: 3000, // Cambia cada 3 segundos
+      wrap: true
+    });
+  </script>
 {% endblock %}
 
 
