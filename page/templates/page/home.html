@@ -146,25 +146,19 @@
             <div class="row justify-content-center"> <!-- Centrar el carrusel -->
                 <div id="brandsCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <!-- Marca 1 -->
-                        <div class="carousel-item active">
-                            <div class="d-flex justify-content-center">
-                                <img src="{% static 'img/160x120.png' %}" class="d-block w-auto" alt="Marca 1">
+                        {% if marcas %}
+                            {% for marca in marcas %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="d-flex justify-content-center">
+                                        <img src="{{ marca.imagen.url }}" class="d-block w-auto" alt="{{ marca.nombre }}">
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="alert alert-info">
+                                <strong>Info!</strong> No existen marcas para mostrar.
                             </div>
-                        </div>
-                        <!-- Marca 2 -->
-                        <div class="carousel-item">
-                            <div class="d-flex justify-content-center">
-                                <img src="{% static 'img/160x120.png' %}" class="d-block w-auto" alt="Marca 2">
-                            </div>
-                        </div>
-                        <!-- Marca 3 -->
-                        <div class="carousel-item">
-                            <div class="d-flex justify-content-center">
-                                <img src="{% static 'img/160x120.png' %}" class="d-block w-auto" alt="Marca 3">
-                            </div>
-                        </div>
-                        <!-- Agrega más marcas según necesites -->
+                        {% endif %}
                     </div>
                   
                     <!-- Controles del carrusel -->
@@ -187,74 +181,61 @@
     <section id="features" class="features section-bg">
         <div class="container" data-aos="fade-up">
 
-        <ul class="nav nav-tabs row  g-2 d-flex">
+            <ul class="nav nav-tabs row  g-2 d-flex">
+                {% if sucursales %}
+                    {% for sucursal in sucursales %}
+                        <li class="nav-item col-3">
+                            <a class="nav-link {% if forloop.first %}active show{% endif %}" data-bs-toggle="tab" data-bs-target="#tab-{{sucursal.id}}">
+                                <h4>{{sucursal.nombre}}</h4>
+                            </a>
+                        </li><!-- End tab nav item -->
+                    {% endfor %}
+                {% endif %}
+            </ul>
 
-            <li class="nav-item col-3">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-                <h4>Central</h4>
-            </a>
-            </li><!-- End tab nav item -->
+            <div class="tab-content">
 
-            <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
-                <h4>Sucursal 4to Anillo</h4>
-            </a><!-- End tab nav item -->
+                {% if sucursales %}
+                    {% for sucursal in sucursales %}
 
-            <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
-                <h4>Sucursal Cochabamba</h4>
-            </a>
-            </li><!-- End tab nav item -->
-
-            <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
-                <h4>Sucursal La Paz</h4>
-            </a>
-            </li><!-- End tab nav item -->
-
-        </ul>
-        {{context}}
-        <div class="tab-content">
-
-            {% if sucursales %}
-                {% for sucursal in sucursales %}
-                    <div class="tab-pane active show" id="tab-{{sucursal.id}}">
-                        <div class="row">
-                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
-                            data-aos="fade-up" data-aos-delay="100">
-                                <h3>{{sucursal.nombre}}</h3>
-                                <p class="fst-italic">
-                                    {{sucursal.descripcion}}
-                                </p>
-                                <ul>
-                                    <li><i class="fas fa-map-marker-alt"></i> Dirección: {{sucursal.direccion}}</li>
-                                    <li><i class="fas fa-phone"></i> Teléfono: {{sucursal.telefono}}</li>
-                                    <li><i class="far fa-clock"></i> Horario de Atención: {{sucursal.horario}}</li>
-                                </ul> 
-                                <p class="fst-italic">
-                                    Ejecutivos de venta:
-                                </p>
-                                <ul>
-                                    <li><i class="bi bi-whatsapp"></i> ventas1 <a href="">+123456789</a></li>
-                                    <li><i class="bi bi-whatsapp"></i> ventas2 <a href="">+123456789</a></li>
-                                    <li><i class="bi bi-whatsapp"></i> ventas3 <a href="">+123456789</a></li>
-                                </ul>
+                        <!-- Tab content item -->
+                         <div class="tab-pane {% if forloop.first %}active show{% endif %}" id="tab-{{sucursal.id}}">
+                            <div class="row">
+                                <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
+                                data-aos="fade-up" data-aos-delay="100">
+                                    <h3>{{sucursal.nombre}}</h3>
+                                    <p class="fst-italic">
+                                        {{sucursal.descripcion}}
+                                    </p>
+                                    <ul>
+                                        <li><i class="fas fa-map-marker-alt"></i> Dirección: {{sucursal.direccion}}</li>
+                                        <li><i class="fas fa-phone"></i> Teléfono: {{sucursal.telefono}}</li>
+                                        <li><i class="far fa-clock"></i> Horario de Atención: {{sucursal.horario}}</li>
+                                    </ul>
+                                    <p class="fst-italic
+                                    ">
+                                        Ejecutivos de venta:
+                                    </p>
+                                    <ul>
+                                        <li><i class="bi bi-whatsapp"></i> ventas1 <a href="">+123456789</a></li>
+                                        <li><i class="bi bi-whatsapp"></i> ventas2 <a href="">+123456789</a></li>
+                                        <li><i class="bi bi-whatsapp"></i> ventas3 <a href="">+123456789</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+                                    <img src="{{sucursal.imagen.url}}" alt="" class="img-fluid">
+                                </div>
                             </div>
-                            <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
-                                <img src="{{sucursal.imagen.url}}" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div><!-- End tab content item -->
-                {% endfor %}
-            {% else %}
-                <div class="alert alert-info">
-                    <strong>Info!</strong> No existen sucursales para mostrar.
-                </div>
-            {% endif %}
+                        </div><!-- End tab content item -->
 
-
-        </div>
-
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-info">
+                        <strong>Info!</strong> No existen sucursales para mostrar.
+                    </div>
+                {% endif %}
+            </div>
+            
         </div>
     </section><!-- End Features Section -->
 
