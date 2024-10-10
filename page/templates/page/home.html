@@ -123,7 +123,6 @@
             </div>
         </div>
     </section>
-    
     <!-- End Alt Services Section -->
 
     <!-- ======= Features Section ======= -->
@@ -166,9 +165,10 @@
                                         Ejecutivos de venta:
                                     </p>
                                     <ul>
-                                        <li><i class="bi bi-whatsapp"></i> ventas1 <a href="">+123456789</a></li>
-                                        <li><i class="bi bi-whatsapp"></i> ventas2 <a href="">+123456789</a></li>
-                                        <li><i class="bi bi-whatsapp"></i> ventas3 <a href="">+123456789</a></li>
+                                        {% for ejecutivo in sucursal.ejecutivos.all %}
+                                            <!-- Ejecutivo de ventas con link de whatsapp -->
+                                            <li><strong>{{ejecutivo.nombre}}</strong> <a href="https://wa.me/+591{{ejecutivo.telefono}}?text=Hola%20{{ejecutivo.nombre}},%20necesito%20información%20sobre%20los%20productos%20de%20MEGAPARTES%20SRL" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
