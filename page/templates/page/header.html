@@ -14,11 +14,9 @@
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
       <ul>
-        {% if not request.user.is_authenticated %}
         <li><a href="{% url 'home' %}" class="active">Inicio</a></li>
         <li><a href="{% url 'about' %}">Sobre Nosotros</a></li>
-        <li><a href="#">Ingresar</a></li>
-        {% else %}
+        {% if request.user.is_authenticated %}
         <li><a href="#">Blog</a></li>
         <li class="dropdown"><a href="#"><span>Dropdown</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
@@ -43,6 +41,8 @@
         </li>
         <li><a href="#">Contact</a></li>
         <li><a href="#">Salir</a></li>
+        {% else %}
+        <li><a href="#">Ingresar</a></li>
         {% endif %}
       </ul>
     </nav>

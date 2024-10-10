@@ -4,8 +4,8 @@
 {% block css %}
 <style>
     .custom-img {
-        width: 50%; /* Ajusta el porcentaje según tus necesidades */
-        height: auto; /* Mantiene la proporción de la imagen */
+        width: auto; /* Ajusta el porcentaje según tus necesidades */
+        height: 200px; /* Mantiene la proporción de la imagen */
     }
 </style>
 {% endblock %}
@@ -99,7 +99,7 @@
                             {% for marca in marcas %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="d-flex justify-content-center">
-                                        <img src="{{ marca.imagen.url }}" class="d-block w-auto" alt="{{ marca.nombre }}">
+                                        <img src="{{ marca.imagen.url }}" class="d-block custom-img" alt="Imagen de {{ marca.nombre }}">
                                     </div>
                                 </div>
                             {% endfor %}
@@ -161,15 +161,14 @@
                                         <li><i class="fas fa-phone"></i> Teléfono: {{sucursal.telefono}}</li>
                                         <li><i class="far fa-clock"></i> Horario de Atención: {{sucursal.horario}}</li>
                                     </ul>
-                                    <p class="fst-italic">
+                                    <p class="fst-italic
+                                    ">
                                         Ejecutivos de venta:
                                     </p>
                                     <ul>
-                                        {% for ejecutivo in sucursal.ejecutivos.all %}
-                                            <li><i class="bi bi-whatsapp"></i> {{ejecutivo.nombre}} 
-                                                <a href="https://wa.me/{{ejecutivo.numero}}">{{ejecutivo.numero}}</a>
-                                            </li>
-                                        {% endfor %}
+                                        <li><i class="bi bi-whatsapp"></i> ventas1 <a href="">+123456789</a></li>
+                                        <li><i class="bi bi-whatsapp"></i> ventas2 <a href="">+123456789</a></li>
+                                        <li><i class="bi bi-whatsapp"></i> ventas3 <a href="">+123456789</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
@@ -401,7 +400,7 @@
 <script>
     var myCarousel = document.querySelector('#brandsCarousel');
     var carousel = new bootstrap.Carousel(myCarousel, {
-      interval: 3000, // Cambia cada 3 segundos
+      interval: 1000, // Cambia cada 3 segundos
       wrap: true
     });
   </script>
