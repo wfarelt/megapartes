@@ -63,3 +63,19 @@ class Sucursal(models.Model):
 
     class Meta:
         verbose_name_plural = "Sucursales"
+        
+# Ejecutivo de Ventas
+class Ejecutivo(models.Model):
+    nombre = models.CharField(max_length=50)
+    telefono = models.CharField(max_length=50)
+    correo = models.EmailField()
+    imagen = models.ImageField(upload_to='ejecutivos/')
+    sucursal = models.ForeignKey(Sucursal, related_name='ejecutivos', on_delete=models.CASCADE)
+    estado = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural = "Ejecutivos"
+        

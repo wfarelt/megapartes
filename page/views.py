@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Sliders, Categoria, Servicio, Marca, Sucursal
+from .models import Sliders, Categoria, Servicio, Marca, Sucursal, Ejecutivo
 
 # Create your views here.
 
@@ -8,17 +8,18 @@ def home(request):
     categories = Categoria.objects.all()
     services = Servicio.objects.all()
     marcas = Marca.objects.all()
-    sucursales = Sucursal.objects.all()
+    #Filtrar las ultimas 4 sucursales
+    sucursales = Sucursal.objects.filter(estado=True).order_by('id')[:4]
     
     return render(request, 'page/home.html', {
         'sliders': sliders, 
         'categories': categories, 
         'services': services, 
         'marcas': marcas, 
-        'sucursales': sucursales})
-
-def home2(request):
-    return render(request, 'page/base2.html')
+        'sucursales': sucursales,
+        })
 
 def about(request):
-    return render(request, 'page/about.html')
+    ejecutivos = Ejecutivo.objects.filter(estado=True)
+    return render(request, 'page/about.html', {'ejecutivos': ejecutivos})
+    
