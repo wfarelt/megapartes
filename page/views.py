@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Sliders, Categoria, Servicio, Marca, Sucursal, Ejecutivo
+from .models import Sliders, Categoria, Servicio, Marca, Sucursal, \
+      Ejecutivo, SubCategoria, Producto
 
 # Create your views here.
 
@@ -22,4 +23,8 @@ def home(request):
 def about(request):
     ejecutivos = Ejecutivo.objects.filter(estado=True)
     return render(request, 'page/about.html', {'ejecutivos': ejecutivos})
-    
+
+def catalog(request):
+    categorias = Categoria.objects.all()
+    subcategorias = SubCategoria.objects.all()
+    return render(request, 'page/catalog.html', {'categorias': categorias, 'subcategorias': subcategorias})

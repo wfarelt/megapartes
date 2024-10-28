@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block css %}
+<style>
+    /* Personalización de las secciones */
+    .section-black {
+        background-color: #000;
+        color: #fff;
+    }
+    .section-white {
+        background-color: #fff;
+        color: #000;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Sección Navbar - Fondo Blanco -->
+<section class="section section-black">
+    <div class="container">
+    </div>
+</section>
+
+    <h1>Catalog</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <ul>
+                {% for categoria in categorias %}
+                    <li>{{ categoria.nombre }}</li>
+                    <!-- Mostar solo las subcategorias de la categoria actual -->
+                    {% for subcategoria in categoria.subcategorias.all %}
+                        <ul>{{ subcategoria.nombre }}</ul>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-9">
+
+            <h1>productos</h1>            
+
+        </div>
+    </div>
+    
+    
+{% endblock %}

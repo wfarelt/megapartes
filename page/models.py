@@ -26,6 +26,31 @@ class Categoria(models.Model):
     class Meta:
         verbose_name_plural = "Categorias"
 
+class SubCategoria(models.Model):
+    categoria = models.ForeignKey(Categoria, related_name='subcategorias', on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=50)
+    estado = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural = "SubCategorias"
+
+class Producto(models.Model):
+    subcategoria = models.ForeignKey(SubCategoria, related_name='productos', on_delete=models.CASCADE)
+    codigo = models.CharField(max_length=15, unique=True)
+    nombre = models.CharField(max_length=100)
+    imagen = models.ImageField(upload_to='productos/', default='productos/default.png')
+    precio = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    estado = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural = "Productos"
+
 class Servicio(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField()
