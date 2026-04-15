@@ -34,16 +34,16 @@
 
 </head>
 <body>
-    <!-- Header -->
+    {% block header %}
     {% include 'page/header.html' %}
-    <!-- End Header -->
+    {% endblock %}
 
     {% block content %}
     {% endblock %}
 
-    <!-- Footer -->
+    {% block footer %}
     {% include 'page/footer.html' %}
-    <!-- End Footer -->
+    {% endblock %}
     
     <!-- Vendor JS Files -->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
