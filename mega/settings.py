@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 # Importar decouple
 from decouple import config, Csv
-import os
+from typing import cast
 
 from pathlib import Path
 
@@ -25,12 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-eo=6*6!%r+9$!$bmbgpie_azp8tq2p16b0h1-n3chg-83f43c_'
 
-# Detectar el entorno actual
-DJANGO_ENV = config('DJANGO_ENV', default='local')
-if DJANGO_ENV == 'local':
-    DEBUG = True
-else:
-    DEBUG = False
+# Detectar el entorno actual.
+# Solo usar configuración de producción cuando el valor sea explícito.
+DJANGO_ENV = cast(str, config('DJANGO_ENV', default='local')).strip().lower()
+IS_PRODUCTION = DJANGO_ENV in {'production', 'prod'}
+DEBUG = not IS_PRODUCTION
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -85,12 +84,13 @@ WSGI_APPLICATION = 'mega.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if DJANGO_ENV == 'local':
+if not IS_PRODUCTION:
+    local_database_name = cast(str, config('LOCAL_DATABASE_NAME'))
     # Configuración de la base de datos para el entorno local
     DATABASES = {
         'default': {
             'ENGINE': config('LOCAL_DATABASE_ENGINE'),
-            'NAME': BASE_DIR / config('LOCAL_DATABASE_NAME'),
+            'NAME': BASE_DIR / local_database_name,
         }
     }
     ALLOWED_HOSTS = ['*']

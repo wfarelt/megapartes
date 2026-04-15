@@ -24,7 +24,10 @@ def about(request):
     ejecutivos = Ejecutivo.objects.filter(estado=True)
     return render(request, 'page/about.html', {'ejecutivos': ejecutivos})
 
-def catalog(request):
+
+def catalog(request, id_subcategoria=None):
+    if id_subcategoria:
+        productos = Producto.objects.filter(subcategoria=id_subcategoria)
     categorias = Categoria.objects.all()
     subcategorias = SubCategoria.objects.all()
     return render(request, 'page/catalog.html', {'categorias': categorias, 'subcategorias': subcategorias})

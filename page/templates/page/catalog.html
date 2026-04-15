@@ -12,6 +12,44 @@
         background-color: #fff;
         color: #000;
     }
+    .panel-subcategoria{
+        background-color: var(--color-primary);
+        color: white;    
+    }
+
+    .panel-subcategoria li{
+        color:black;
+    }
+
+    .panel-subcategoria ul{
+        list-style-type: none;
+    }
+
+    .panel-subcategoria a{
+        color: white;
+    }
+
+    .panel-subcategoria a:hover{
+        color: var(--color-secondary);
+    }
+
+    .card{
+        padding: 0;
+    }
+
+    .card-body{
+        height: 150px;
+    }
+
+    .card-footer{
+        background-color: var(--color-primary);
+        color: white;
+    }
+
+    .card-footer h3{
+        text-align: center;
+    }   
+    
 </style>
 {% endblock %}
 
@@ -21,24 +59,38 @@
     <div class="container">
     </div>
 </section>
-
-    <h1>Catalog</h1>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 p-4 panel-subcategoria">
+            <h1>Catálogo</h1>
             <ul>
                 {% for categoria in categorias %}
                     <li>{{ categoria.nombre }}</li>
                     <!-- Mostar solo las subcategorias de la categoria actual -->
                     {% for subcategoria in categoria.subcategorias.all %}
-                        <ul>{{ subcategoria.nombre }}</ul>
+                        <ul>
+                            <!--Enviar un get con el id subcategoria -->                            
+                            <a href="{% url 'catalog' %}?id_subcategoria={{ subcategoria.id }}"><li>{{ subcategoria.nombre }}</li></a>
+                        </ul>
                     {% endfor %}
                 {% endfor %}
             </ul>
         </div>
         <div class="col-md-9">
-
-            <h1>productos</h1>            
-
+            <div class="row">
+                {# Generar 10 tarjetas de ejemplo #}
+                
+                {% for producto in productos %}
+                    <div class="col-md-3 m-4 card">
+                        <div class="card-body">
+                            <!-- Añadir imagen-->
+                            <img src="{{ producto.imagen.url }}" class="img-fluid" alt="Imagen de producto">                            
+                        </div>
+                        <div class="card-footer">
+                            <h3>{{ producto.codigo }}</h3>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     
