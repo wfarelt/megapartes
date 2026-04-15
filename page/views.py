@@ -5,7 +5,7 @@ from .models import Sliders, Categoria, Servicio, Marca, Sucursal, \
 # Create your views here.
 
 def home(request):
-    sliders = Sliders.objects.all()
+    sliders = Sliders.objects.filter(estado=True)
     categories = Categoria.objects.all()
     services = Servicio.objects.all()
     marcas = Marca.objects.all()

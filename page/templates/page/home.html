@@ -27,11 +27,14 @@
 
 <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
-    {% if sliders %}             
+    {% if sliders %}
         {% for slider in sliders %}
-            <div class="carousel-item active" style="background-image: url({{slider.imagen.url}})">
+            <div class="carousel-item {% if forloop.first %}active{% endif %}" style="background-image: url('{{ slider.imagen.url }}');">
             </div>
         {% endfor %}
+    {% else %}
+        <div class="carousel-item active" style="background-image: url('{% static "img/hero-carousel/hero-carousel-1.jpg" %}');">
+        </div>
     {% endif %}
 
     <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
