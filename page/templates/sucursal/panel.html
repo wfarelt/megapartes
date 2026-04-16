@@ -1,19 +1,21 @@
 {% extends 'panel.html' %}
 
 {% block panel_content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
+<section class="reveal-item" aria-label="Listado de sucursales">
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
   <div>
     <h2 class="mb-1">Sucursales</h2>
-    <p class="mb-0">Administra las sucursales registradas.</p>
+    <p class="mb-0 text-secondary">Administra las sucursales registradas.</p>
   </div>
-  <div class="d-flex gap-2">
-    <a class="btn btn-warning" href="{% url 'sucursal_create' %}">Nueva sucursal</a>
-    <a class="btn btn-outline-secondary" href="{% url 'home' %}">Volver al inicio</a>
+  <div class="d-flex flex-wrap gap-2" role="group" aria-label="Acciones de sucursales">
+    <a class="btn btn-warning btn-icon" href="{% url 'sucursal_create' %}" aria-label="Crear nueva sucursal" title="Nueva sucursal">
+      <i class="bi bi-plus-lg" aria-hidden="true"><span>Nuevo</span></i>
+    </a>
   </div>
 </div>
 
-<div class="table-responsive bg-white rounded shadow-sm">
-  <table class="table table-striped align-middle mb-0">
+<div class="table-responsive ui-glass shadow-sm reveal-item" role="region" aria-label="Tabla de sucursales">
+  <table class="table table-sm table-striped table-hover align-middle mb-0" aria-describedby="sucursales-help">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -37,8 +39,12 @@
             {% endif %}
           </td>
           <td class="text-end">
-            <a class="btn btn-sm btn-outline-primary" href="{% url 'sucursal_update' sucursal.id %}">Editar</a>
-            <a class="btn btn-sm btn-outline-danger" href="{% url 'sucursal_delete' sucursal.id %}">Eliminar</a>
+            <a class="btn btn-sm btn-outline-primary btn-icon" href="{% url 'sucursal_update' sucursal.id %}" aria-label="Editar sucursal {{ sucursal.nombre }}" title="Editar">
+              <i class="bi bi-pencil" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-sm btn-outline-danger btn-icon" href="{% url 'sucursal_delete' sucursal.id %}" aria-label="Eliminar sucursal {{ sucursal.nombre }}" title="Eliminar">
+              <i class="bi bi-trash" aria-hidden="true"></i>
+            </a>
           </td>
         </tr>
       {% empty %}
@@ -49,4 +55,6 @@
     </tbody>
   </table>
 </div>
+<p id="sucursales-help" class="small text-secondary mt-2 mb-0">Usa los botones para editar o eliminar cada sucursal.</p>
+</section>
 {% endblock %}

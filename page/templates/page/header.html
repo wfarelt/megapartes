@@ -20,14 +20,7 @@
        
         {% if request.user.is_authenticated %}
           {% if request.user.is_staff %}
-          <li class="dropdown"><a href="#"><span>Configuración</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="{% url 'ejecutivo_panel' %}">Ejecutivos</a></li>
-              <li><a href="{% url 'marca_panel' %}">Marcas</a></li>
-              <li><a href="{% url 'sucursal_panel' %}">Sucursales</a></li>
-              <li><a href="{% url 'admin:index' %}">Administracion</a></li>
-            </ul>
-          </li>
+            <li><a href="{% url 'marca_panel' %}">Config</a></li>
           {% endif %}
           <li><a href="{% url 'logout' %}">Salir</a></li>
         {% else %}

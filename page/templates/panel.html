@@ -1,17 +1,60 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel | Megapartes</title>
 
-{% block css %}
-{% endblock %}
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  <link href="{% static 'panel/css/panel.css' %}" rel="stylesheet">
 
-{% block header %}
-{% endblock %}
+  {% block css %}{% endblock %}
+</head>
+<body class="panel-layout">
+  <header class="panel-shell" role="banner">
+    <div class="panel-glass p-3 p-md-4">
+      <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-start align-items-lg-center">
+        <div>
+          <h1 class="h4 mb-1 fw-bold">Panel de administracion</h1>
+          <p class="mb-0" style="color: var(--panel-muted);">Gestion centralizada de sucursales, marcas y ejecutivos.</p>
+        </div>
 
-{% block content %}
-<div class="container py-5">
-  {% block panel_content %}
-  {% endblock %}
-</div>
-{% endblock %}
+        <nav class="d-flex flex-wrap gap-2" aria-label="Navegacion del panel">
+          <button
+            id="themeToggle"
+            class="panel-theme-toggle"
+            type="button"
+            aria-label="Cambiar a modo oscuro"
+            title="Cambiar tema"
+          >
+            <i id="themeToggleIcon" class="bi bi-moon-stars"></i>
+            <span id="themeToggleText">Oscuro</span>
+          </button>
+          <a class="panel-nav-link" href="{% url 'sucursal_panel' %}"><i class="bi bi-shop"></i> Sucursales</a>
+          <a class="panel-nav-link" href="{% url 'marca_panel' %}"><i class="bi bi-tags"></i> Marcas</a>
+          <a class="panel-nav-link" href="{% url 'ejecutivo_panel' %}"><i class="bi bi-people"></i> Ejecutivos</a>
+          <a class="panel-nav-link" href="{% url 'home' %}"><i class="bi bi-house"></i> Sitio</a>
+          {% if user.is_authenticated %}
+            <a class="panel-nav-link" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> Salir</a>
+          {% endif %}
+        </nav>
+      </div>
+    </div>
+  </header>
 
-{% block footer %}
-{% endblock %}
+  <main class="panel-shell panel-main reveal" role="main">
+    {% block panel_content %}{% endblock %}
+  </main>
+
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="{% static 'panel/js/panel.js' %}"></script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

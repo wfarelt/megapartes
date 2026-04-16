@@ -1,0 +1,268 @@
+html[data-bs-theme="light"] {
+  --panel-bg: #f4f6f8;
+  --panel-surface: rgba(255, 255, 255, 0.74);
+  --panel-surface-solid: #ffffff;
+  --panel-text: #1f2933;
+  --panel-muted: #667185;
+  --panel-accent: #d4a017;
+  --panel-accent-strong: #b88400;
+  --panel-accent-contrast: #1f2933;
+  --panel-border: rgba(31, 41, 51, 0.12);
+  --panel-shadow: 0 12px 28px rgba(16, 24, 40, 0.14);
+  --panel-button-soft: rgba(31, 41, 51, 0.06);
+  --panel-primary: #2563eb;
+  --panel-danger: #dc3545;
+}
+
+html[data-bs-theme="dark"] {
+  --panel-bg: #0f1419;
+  --panel-surface: rgba(20, 27, 36, 0.7);
+  --panel-surface-solid: #1a2330;
+  --panel-text: #e5e7eb;
+  --panel-muted: #9eabba;
+  --panel-accent: #f1c84a;
+  --panel-accent-strong: #ffd86b;
+  --panel-accent-contrast: #0f1419;
+  --panel-border: rgba(229, 231, 235, 0.16);
+  --panel-shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
+  --panel-button-soft: rgba(229, 231, 235, 0.08);
+  --panel-primary: #7db2ff;
+  --panel-danger: #ff8a94;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-bs-theme="auto"] {
+    --panel-bg: #0f1419;
+    --panel-surface: rgba(20, 27, 36, 0.7);
+    --panel-surface-solid: #1a2330;
+    --panel-text: #e5e7eb;
+    --panel-muted: #9eabba;
+    --panel-accent: #f1c84a;
+    --panel-accent-strong: #ffd86b;
+    --panel-accent-contrast: #0f1419;
+    --panel-border: rgba(229, 231, 235, 0.16);
+    --panel-shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
+    --panel-button-soft: rgba(229, 231, 235, 0.08);
+    --panel-primary: #7db2ff;
+    --panel-danger: #ff8a94;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html[data-bs-theme="auto"] {
+    --panel-bg: #f4f6f8;
+    --panel-surface: rgba(255, 255, 255, 0.74);
+    --panel-surface-solid: #ffffff;
+    --panel-text: #1f2933;
+    --panel-muted: #667185;
+    --panel-accent: #d4a017;
+    --panel-accent-strong: #b88400;
+    --panel-accent-contrast: #1f2933;
+    --panel-border: rgba(31, 41, 51, 0.12);
+    --panel-shadow: 0 12px 28px rgba(16, 24, 40, 0.14);
+    --panel-button-soft: rgba(31, 41, 51, 0.06);
+    --panel-primary: #2563eb;
+    --panel-danger: #dc3545;
+  }
+}
+
+body.panel-layout {
+  min-height: 100vh;
+  color: var(--panel-text);
+  background:
+    radial-gradient(circle at 8% 8%, rgba(212, 160, 23, 0.12), transparent 34%),
+    radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.12), transparent 32%),
+    var(--panel-bg);
+}
+
+.panel-shell {
+  width: min(1200px, 100% - 2rem);
+  margin: 1.25rem auto 2rem;
+}
+
+.panel-glass {
+  background: var(--panel-surface);
+  border: 1px solid var(--panel-border);
+  border-radius: 1rem;
+  box-shadow: var(--panel-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.panel-nav-link {
+  color: var(--panel-text);
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.65rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.panel-nav-link:hover,
+.panel-nav-link:focus-visible {
+  background-color: color-mix(in srgb, var(--panel-accent) 22%, transparent 78%);
+  transform: translateY(-1px);
+  color: var(--panel-text);
+}
+
+.panel-theme-toggle {
+  border: 1px solid var(--panel-border);
+  color: var(--panel-text);
+  background: color-mix(in srgb, var(--panel-surface-solid) 88%, transparent 12%);
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.65rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.panel-theme-toggle:hover,
+.panel-theme-toggle:focus-visible {
+  background-color: color-mix(in srgb, var(--panel-accent) 22%, transparent 78%);
+  transform: translateY(-1px);
+  color: var(--panel-text);
+}
+
+.panel-main {
+  margin-top: 1rem;
+  padding: 1.2rem;
+  background: var(--panel-surface-solid);
+  border-radius: 1rem;
+  border: 1px solid var(--panel-border);
+}
+
+.panel-main .table-responsive {
+  border-radius: 0.85rem;
+}
+
+.panel-main .table {
+  --bs-table-color: var(--panel-text);
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--panel-border);
+  --bs-table-striped-color: var(--panel-text);
+  --bs-table-striped-bg: color-mix(in srgb, var(--panel-text) 4%, transparent 96%);
+  --bs-table-hover-color: var(--panel-text);
+  --bs-table-hover-bg: color-mix(in srgb, var(--panel-accent) 8%, transparent 92%);
+  margin-bottom: 0;
+}
+
+.panel-main .table thead th {
+  color: var(--panel-muted);
+  font-weight: 700;
+}
+
+.panel-main .table tbody td,
+.panel-main .table tbody th,
+.panel-main .table tbody tr {
+  color: var(--panel-text);
+}
+
+.panel-main .text-secondary,
+.panel-main .small.text-secondary,
+.panel-shell .text-secondary {
+  color: var(--panel-muted) !important;
+}
+
+.panel-main .table > :not(caption) > * > * {
+  padding: 0.65rem 0.7rem;
+}
+
+.panel-main .card {
+  border-radius: 1rem;
+  border: 1px solid var(--panel-border);
+  box-shadow: none;
+  background: var(--panel-surface-solid);
+}
+
+.panel-main .card-body {
+  padding: 1.25rem;
+}
+
+.panel-main .btn {
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.panel-main .btn:hover,
+.panel-main .btn:focus-visible {
+  transform: translateY(-1px);
+}
+
+.panel-main .btn-warning {
+  --bs-btn-color: var(--panel-accent-contrast);
+  --bs-btn-bg: var(--panel-accent);
+  --bs-btn-border-color: var(--panel-accent);
+  --bs-btn-hover-color: var(--panel-accent-contrast);
+  --bs-btn-hover-bg: var(--panel-accent-strong);
+  --bs-btn-hover-border-color: var(--panel-accent-strong);
+  --bs-btn-active-color: var(--panel-accent-contrast);
+  --bs-btn-active-bg: var(--panel-accent-strong);
+  --bs-btn-active-border-color: var(--panel-accent-strong);
+  --bs-btn-disabled-color: var(--panel-accent-contrast);
+  --bs-btn-disabled-bg: color-mix(in srgb, var(--panel-accent) 70%, transparent 30%);
+  --bs-btn-disabled-border-color: color-mix(in srgb, var(--panel-accent) 70%, transparent 30%);
+}
+
+.panel-main .btn-outline-secondary {
+  --bs-btn-color: var(--panel-muted);
+  --bs-btn-border-color: var(--panel-border);
+  --bs-btn-hover-color: var(--panel-text);
+  --bs-btn-hover-bg: var(--panel-button-soft);
+  --bs-btn-hover-border-color: var(--panel-border);
+  --bs-btn-active-color: var(--panel-text);
+  --bs-btn-active-bg: var(--panel-button-soft);
+  --bs-btn-active-border-color: var(--panel-border);
+}
+
+.panel-main .btn-outline-primary {
+  --bs-btn-color: var(--panel-primary);
+  --bs-btn-border-color: color-mix(in srgb, var(--panel-primary) 55%, var(--panel-border) 45%);
+  --bs-btn-hover-color: var(--panel-surface-solid);
+  --bs-btn-hover-bg: var(--panel-primary);
+  --bs-btn-hover-border-color: var(--panel-primary);
+  --bs-btn-active-color: var(--panel-surface-solid);
+  --bs-btn-active-bg: var(--panel-primary);
+  --bs-btn-active-border-color: var(--panel-primary);
+}
+
+.panel-main .btn-outline-danger {
+  --bs-btn-color: var(--panel-danger);
+  --bs-btn-border-color: color-mix(in srgb, var(--panel-danger) 55%, var(--panel-border) 45%);
+  --bs-btn-hover-color: var(--panel-surface-solid);
+  --bs-btn-hover-bg: var(--panel-danger);
+  --bs-btn-hover-border-color: var(--panel-danger);
+  --bs-btn-active-color: var(--panel-surface-solid);
+  --bs-btn-active-bg: var(--panel-danger);
+  --bs-btn-active-border-color: var(--panel-danger);
+}
+
+.btn-icon {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.65rem;
+}
+
+.btn-icon.btn-sm {
+  width: 1.95rem;
+  height: 1.95rem;
+  border-radius: 0.55rem;
+}
+
+@media (min-width: 992px) {
+  .panel-main .card-body {
+    padding: 1.5rem;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--panel-accent) 70%, white 30%);
+  outline-offset: 2px;
+}

@@ -1,13 +1,14 @@
 {% extends 'panel.html' %}
 
 {% block panel_content %}
+<section class="reveal-item" aria-label="Formulario de ejecutivo">
 <div class="row justify-content-center">
-  <div class="col-lg-8">
-    <div class="card shadow-sm border-0">
+  <div class="col-lg-7 col-xl-6">
+    <div class="card ui-neumo shadow-sm border-0 reveal-item">
       <div class="card-body p-4 p-md-5">
         <h2 class="mb-4">{{ title }}</h2>
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" aria-label="Formulario de ejecutivo" novalidate>
           {% csrf_token %}
 
           {% if form.non_field_errors %}
@@ -15,7 +16,7 @@
           {% endif %}
 
           {% for field in form %}
-            <div class="mb-3">
+            <div class="mb-3 reveal-item">
               <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
               {{ field }}
               {% if field.errors %}
@@ -24,13 +25,14 @@
             </div>
           {% endfor %}
 
-          <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-warning">{{ button_label }}</button>
-            <a href="{% url 'ejecutivo_panel' %}" class="btn btn-outline-secondary">Cancelar</a>
+          <div class="d-flex flex-wrap gap-2 pt-2" role="group" aria-label="Acciones de formulario">
+            <button type="submit" class="btn btn-warning" aria-label="Guardar ejecutivo">{{ button_label }}</button>
+            <a href="{% url 'ejecutivo_panel' %}" class="btn btn-outline-secondary" aria-label="Cancelar y volver a ejecutivos">Cancelar</a>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+</section>
 {% endblock %}

@@ -55,9 +55,13 @@ def login_view(request):
     if request.method != 'POST':
         return redirect('home')
 
-    next_url = request.POST.get('next', '/')
+    default_next_url = reverse('sucursal_panel')
+    next_url = request.POST.get('next', '').strip() or default_next_url
+    if next_url == '/':
+        next_url = default_next_url
+
     if not url_has_allowed_host_and_scheme(next_url, {request.get_host()}, request.is_secure()):
-        next_url = '/'
+        next_url = default_next_url
 
     username = request.POST.get('username', '').strip()
     password = request.POST.get('password', '')

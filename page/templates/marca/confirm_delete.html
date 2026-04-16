@@ -1,22 +1,24 @@
 {% extends 'panel.html' %}
 
 {% block panel_content %}
+<section class="reveal-item" aria-label="Confirmacion de eliminacion de marca">
 <div class="row justify-content-center">
-  <div class="col-lg-6">
-    <div class="card shadow-sm border-0">
+  <div class="col-lg-5">
+    <div class="card ui-neumo shadow-sm border-0 reveal-item">
       <div class="card-body p-4 p-md-5">
         <h2 class="mb-3">Eliminar marca</h2>
-        <p>Seguro que deseas eliminar la marca <strong>{{ marca.nombre }}</strong>?</p>
+        <p class="mb-4">Seguro que deseas eliminar la marca <strong>{{ marca.nombre }}</strong>?</p>
 
-        <form method="post">
+        <form method="post" aria-label="Confirmar eliminacion de marca">
           {% csrf_token %}
-          <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-            <a href="{% url 'marca_panel' %}" class="btn btn-outline-secondary">Cancelar</a>
+          <div class="d-flex flex-wrap gap-2" role="group" aria-label="Acciones de confirmacion">
+            <button type="submit" class="btn btn-danger" aria-label="Confirmar eliminacion de marca">Eliminar</button>
+            <a href="{% url 'marca_panel' %}" class="btn btn-outline-secondary" aria-label="Cancelar eliminacion y volver a marcas">Cancelar</a>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+</section>
 {% endblock %}

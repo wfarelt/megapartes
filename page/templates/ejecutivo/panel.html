@@ -1,19 +1,21 @@
 {% extends 'panel.html' %}
 
 {% block panel_content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
+<section class="reveal-item" aria-label="Listado de ejecutivos">
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
   <div>
     <h2 class="mb-1">Ejecutivos</h2>
-    <p class="mb-0">Administra los ejecutivos registrados.</p>
+    <p class="mb-0 text-secondary">Administra los ejecutivos registrados.</p>
   </div>
-  <div class="d-flex gap-2">
-    <a class="btn btn-warning" href="{% url 'ejecutivo_create' %}">Nuevo ejecutivo</a>
-    <a class="btn btn-outline-secondary" href="{% url 'home' %}">Volver al inicio</a>
+  <div class="d-flex flex-wrap gap-2" role="group" aria-label="Acciones de ejecutivos">
+    <a class="btn btn-warning btn-icon" href="{% url 'ejecutivo_create' %}" aria-label="Crear nuevo ejecutivo" title="Nuevo ejecutivo">
+      <i class="bi bi-plus-lg" aria-hidden="true"> Nuevo</i>
+    </a>
   </div>
 </div>
 
-<div class="table-responsive bg-white rounded shadow-sm">
-  <table class="table table-striped align-middle mb-0">
+<div class="table-responsive ui-glass shadow-sm reveal-item" role="region" aria-label="Tabla de ejecutivos">
+  <table class="table table-sm table-striped table-hover align-middle mb-0" aria-describedby="ejecutivos-help">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -39,8 +41,12 @@
             {% endif %}
           </td>
           <td class="text-end">
-            <a class="btn btn-sm btn-outline-primary" href="{% url 'ejecutivo_update' ejecutivo.id %}">Editar</a>
-            <a class="btn btn-sm btn-outline-danger" href="{% url 'ejecutivo_delete' ejecutivo.id %}">Eliminar</a>
+            <a class="btn btn-sm btn-outline-primary btn-icon" href="{% url 'ejecutivo_update' ejecutivo.id %}" aria-label="Editar ejecutivo {{ ejecutivo.nombre }}" title="Editar">
+              <i class="bi bi-pencil" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-sm btn-outline-danger btn-icon" href="{% url 'ejecutivo_delete' ejecutivo.id %}" aria-label="Eliminar ejecutivo {{ ejecutivo.nombre }}" title="Eliminar">
+              <i class="bi bi-trash" aria-hidden="true"></i>
+            </a>
           </td>
         </tr>
       {% empty %}
@@ -51,4 +57,6 @@
     </tbody>
   </table>
 </div>
+<p id="ejecutivos-help" class="small text-secondary mt-2 mb-0">Usa los botones para editar o eliminar cada ejecutivo.</p>
+</section>
 {% endblock %}
